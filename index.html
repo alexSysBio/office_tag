@@ -73,7 +73,17 @@
   ------------------------------------------------------------------ */
   var FORM_URL     = "";   // π.χ. "https://forms.gle/xxxxxxxx"
   var CALENDAR_URL = "";   // π.χ. "https://calendar.app.google/xxxxxxxx"
+
+  /* Το quiz ανοίγει στο Google Colab. Βάλε το username σου και το όνομα
+     του repo — τα υπόλοιπα συμπληρώνονται μόνα τους.                  */
+  var GITHUB_USER  = "";   // π.χ. "apapagiannakis"
+  var GITHUB_REPO  = "office";
   /* ---------------------------------------------------------------- */
+
+  var COLAB_URL = GITHUB_USER
+    ? "https://colab.research.google.com/github/" + GITHUB_USER + "/" +
+      GITHUB_REPO + "/blob/main/quiz.ipynb"
+    : "";
 
   var ITEMS = [
     { href: FORM_URL,
@@ -82,9 +92,9 @@
     { href: CALENDAR_URL,
       title: "Κλείσε ραντεβού",
       desc:  "Διάλεξε μια ελεύθερη ώρα από τις ώρες γραφείου." },
-    { href: "quiz.html",
-      title: "Quiz αυτοαξιολόγησης",
-      desc:  "Έξι σύντομες ερωτήσεις βακτηριακής φυσιολογίας. Δεν βαθμολογείται." }
+    { href: COLAB_URL,
+      title: "Άσκηση σε Python",
+      desc:  "Τρία προβλήματα ρυθμού ανάπτυξης βακτηρίων, σε Google Colab. Γράφεις κώδικα, τρέχει στον browser, δεν βαθμολογείται." }
   ];
 
   var host = document.getElementById("cards");
