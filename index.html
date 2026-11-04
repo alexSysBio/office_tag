@@ -53,6 +53,7 @@
     <p class="role">Επίκουρος Καθηγητής</p>
     <p class="dept">Πανεπιστήμιο Ιωαννίνων</p>
     <p class="mail"><a href="mailto:papagiannakis.a@uoi.gr">papagiannakis.a@uoi.gr</a></p>
+    <p class="mail"><a href="tel:+302651009019">26510 09019</a></p>
   </header>
 
   <div class="cards" id="cards"></div>
@@ -74,17 +75,23 @@
   var FORM_URL     = "";   // π.χ. "https://forms.gle/xxxxxxxx"
   var CALENDAR_URL = "";   // π.χ. "https://calendar.app.google/xxxxxxxx"
 
-  /* Το quiz ανοίγει στο Google Colab. Βάλε το username σου και το όνομα
-     του repo — τα υπόλοιπα συμπληρώνονται μόνα τους.                  */
-  var GITHUB_USER  = "";   // π.χ. "apapagiannakis"
-  var GITHUB_REPO  = "office";
-  /* ---------------------------------------------------------------- */
+  /* Ο σύνδεσμος του Colab φτιάχνεται μόνος του από αυτά τα δύο.       */
+  var GITHUB_USER  = "alexSysBio";
+  var GITHUB_REPO  = "office_tag";
 
   var COLAB_URL = GITHUB_USER
     ? "https://colab.research.google.com/github/" + GITHUB_USER + "/" +
       GITHUB_REPO + "/blob/main/quiz.ipynb"
     : "";
+  /* ---------------------------------------------------------------- */
 
+  /* Οι κάρτες, με τη σειρά που εμφανίζονται. Όσο ένα href είναι "", η
+     κάρτα δείχνει ΣΥΝΤΟΜΑ και δεν πατιέται — δεν σπάει τίποτα.
+
+     Η άσκηση ζωντανεύει βάζοντας COLAB_URL στη θέση του "", μόλις
+     ανεβάσεις το quiz.ipynb στο repo.
+
+     Νέα κάρτα: αντίγραψε ένα μπλοκ και άλλαξε τα τρία πεδία.         */
   var ITEMS = [
     { href: FORM_URL,
       title: "Φόρμα σχολιασμού",
@@ -92,9 +99,9 @@
     { href: CALENDAR_URL,
       title: "Κλείσε ραντεβού",
       desc:  "Διάλεξε μια ελεύθερη ώρα από τις ώρες γραφείου." },
-    { href: COLAB_URL,
-      title: "Άσκηση σε Python",
-      desc:  "Τρία προβλήματα ρυθμού ανάπτυξης βακτηρίων, σε Google Colab. Γράφεις κώδικα, τρέχει στον browser, δεν βαθμολογείται." }
+    { href: "",
+      title: "Υπολογιστική άσκηση",
+      desc:  "Προβλήματα ρυθμού ανάπτυξης βακτηρίων σε Python. Τρέχει μέσα στον browser, δεν βαθμολογείται." }
   ];
 
   var host = document.getElementById("cards");
