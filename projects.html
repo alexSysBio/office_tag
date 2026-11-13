@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ερευνητικά θέματα — Αλέξανδρος Παπαγιαννάκης</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --ink:#14181F; --muted:#565E6B;
+    --line:#E2DFD9; --accent:#1F3A5F; --accent-soft:#EEF2F7;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:Inter,system-ui,sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px; margin:0 auto; padding:34px 20px 72px}
+  .back{font-size:14px; display:inline-block; margin-bottom:22px}
+  a{color:var(--accent)}
+  a:hover{color:#132840}
+  h1{font-family:"Noto Serif",Georgia,serif; font-size:29px; line-height:1.2; margin:0 0 10px; font-weight:600}
+  .lede{color:var(--muted); margin:0 0 30px; font-size:15px}
+  .proj{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:24px; margin-bottom:16px}
+  .proj h2{font-family:"Noto Serif",Georgia,serif; font-size:20px; margin:0 0 4px; font-weight:600; color:var(--accent); line-height:1.3}
+  .en{font-size:15px; color:var(--muted); font-style:italic; margin:0 0 12px; line-height:1.4}
+  .proj p{margin:0 0 14px; font-size:15px}
+  .tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:13px}
+  .shot{width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:8px; margin:0 0 15px}
+  .tag{
+    font-size:12px; font-weight:600; letter-spacing:.03em;
+    background:var(--accent-soft); color:var(--accent);
+    border:1px solid #D4DEEA; border-radius:999px; padding:3px 11px;
+  }
+  .meta{font-size:14px; color:var(--muted); margin:0; padding-top:12px; border-top:1px solid var(--line)}
+  .meta b{color:var(--ink); font-weight:600}
+  .meta-en{font-size:14px; color:var(--muted); font-style:italic; margin:5px 0 0}
+  .cta{background:var(--accent-soft); border:1px solid #D4DEEA; border-radius:11px; padding:22px 24px; margin-top:28px}
+  .cta h2{font-family:"Noto Serif",Georgia,serif; font-size:18px; margin:0 0 8px; font-weight:600}
+  .cta p{margin:0; font-size:15px}
+  .none{color:var(--muted); font-size:15px; background:var(--card); border:1px dashed var(--line); border-radius:11px; padding:24px; text-align:center}
+  footer{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html">← Πίσω</a>
+
+  <h1>Ερευνητικά θέματα</h1>
+  <p class="lede">Διαθέσιμα θέματα για πτυχιακή, διπλωματική ή ερευνητική εργασία. Αν σε ενδιαφέρει κάποιο, ή έχεις δική σου ιδέα σε συναφές αντικείμενο, στείλε μου email ή κλείσε ένα ραντεβού.</p>
+
+  <div id="projects"></div>
+
+  <div class="cta">
+    <h2>Σε ενδιαφέρει κάποιο;</h2>
+    <p>Στείλε email στο <a href="mailto:papagiannakis.a@uoi.gr">papagiannakis.a@uoi.gr</a> αναφέροντας ποιο θέμα και τι έχεις κάνει μέχρι τώρα, ή <a href="index.html">κλείσε ένα ραντεβού</a> για να το συζητήσουμε.</p>
+  </div>
+
+  <footer>
+    Αλέξανδρος Παπαγιαννάκης · papagiannakis.a@uoi.gr
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ------------------------------------------------------------------
+     ΤΑ ΘΕΜΑΤΑ. Ένα μπλοκ ανά θέμα — πρόσθεσε, σβήσε ή άλλαξε ελεύθερα.
+
+       title   : ο τίτλος στα ελληνικά
+       titleEn : ο τίτλος στα αγγλικά — "" για να μη φανεί
+       tags    : μικρές ετικέτες (είδος εργασίας, εργαλεία, μέθοδοι)
+       img     : όνομα αρχείου εικόνας στο repo, π.χ. "VAE_Project.png"
+                 — "" για κανένα. Αν λείπει το αρχείο, απλώς δεν φαίνεται.
+       imgAlt  : σύντομη περιγραφή της εικόνας, για όσους δεν τη βλέπουν
+       desc    : 2-4 προτάσεις για το τι θα κάνει ο φοιτητής
+       descEn  : η ίδια περιγραφή στα αγγλικά — "" για να μη φανεί
+       needs   : τι χρειάζεται να ξέρει ήδη — "" για να μη φανεί η γραμμή
+       needsEn : τα ίδια προαπαιτούμενα στα αγγλικά — "" για να μη φανούν
+
+     Άδειος πίνακας [] = η σελίδα δείχνει «δεν υπάρχουν διαθέσιμα θέματα»,
+     χρήσιμο όταν είσαι γεμάτος.
+  ------------------------------------------------------------------ */
+  var PROJECTS = [
+    {
+      title:   "Υπολογιστική ανάλυση της μικροβιακής φυσιολογίας με τη χρήση τεχνητής νοημοσύνης",
+      titleEn: "Computational analysis of microbial physiology using artificial intelligence",
+      tags:    ["Σε εξέλιξη", "Python", "Τεχνητή νοημοσύνη"],
+      img:     "VAE_Project.png",
+      imgAlt:  "Σχηματική αναπαράσταση του μοντέλου: κωδικοποίηση εικόνων κυττάρων σε λανθάνοντα χώρο και πρόβλεψη δυναμικών χαρακτηριστικών.",
+      desc:    "Στόχος είναι η κωδικοποίηση χωρικών κυτταροπλασματικών μεταβλητών σε έναν λανθάνοντα χώρο και η χρήση των λανθανουσών αναπαραστάσεων για την πρόβλεψη δυναμικών χαρακτηριστικών της κυτταρικής φυσιολογίας από στατικές εικόνες.",
+      descEn:  "The aim is to encode spatial cytoplasmic variables into a latent space, and to use the resulting embeddings to predict dynamic features of cellular physiology from static images.",
+      needs:   "Βασικός προγραμματισμός σε Python και κατανόηση θεμελιωδών εννοιών της κυτταρικής αύξησης.",
+      needsEn: "Basic Python programming and an understanding of fundamental concepts in cell growth."
+    }
+
+    /* Για δεύτερο θέμα, πρόσθεσε κόμμα μετά το } παραπάνω και κόλλησε
+       αυτό το μπλοκ, συμπληρωμένο:
+
+    {
+      title:   "",
+      titleEn: "",
+      tags:    [],
+      img:     "",
+      imgAlt:  "",
+      desc:    "",
+      descEn:  "",
+      needs:   "",
+      needsEn: ""
+    }
+    */
+  ];
+
+  var host = document.getElementById("projects");
+
+  if (!PROJECTS.length){
+    var empty = document.createElement("div");
+    empty.className = "none";
+    empty.textContent = "Αυτή τη στιγμή δεν υπάρχουν διαθέσιμα θέματα. Στείλε email αν σε ενδιαφέρει το αντικείμενο — τα θέματα ανανεώνονται.";
+    host.appendChild(empty);
+    return;
+  }
+
+  PROJECTS.forEach(function(p){
+    var d = document.createElement("div");
+    d.className = "proj";
+
+    var h = document.createElement("h2");
+    h.textContent = p.title;
+    d.appendChild(h);
+
+    if (p.titleEn){
+      var en = document.createElement("p");
+      en.className = "en";
+      en.lang = "en";
+      en.textContent = p.titleEn;
+      d.appendChild(en);
+    }
+
+    if (p.tags && p.tags.length){
+      var tw = document.createElement("div");
+      tw.className = "tags";
+      p.tags.forEach(function(t){
+        var s = document.createElement("span");
+        s.className = "tag";
+        s.textContent = t;
+        tw.appendChild(s);
+      });
+      d.appendChild(tw);
+    }
+
+    if (p.img){
+      var im = document.createElement("img");
+      im.className = "shot";
+      im.src = p.img;
+      im.alt = p.imgAlt || "";
+      im.loading = "lazy";
+      /* Αν το αρχείο δεν έχει ανέβει ακόμα, κρύψ' το αντί για σπασμένο εικονίδιο. */
+      im.onerror = function(){ im.style.display = "none"; };
+      d.appendChild(im);
+    }
+
+    var para = document.createElement("p");
+    para.textContent = p.desc;
+    if (p.descEn) para.style.marginBottom = "8px";
+    d.appendChild(para);
+
+    if (p.descEn){
+      var dEn = document.createElement("p");
+      dEn.className = "en";
+      dEn.lang = "en";
+      dEn.textContent = p.descEn;
+      d.appendChild(dEn);
+    }
+
+    if (p.needs){
+      var m = document.createElement("p");
+      m.className = "meta";
+      var b = document.createElement("b");
+      b.textContent = "Προαπαιτούμενα: ";
+      m.appendChild(b);
+      m.appendChild(document.createTextNode(p.needs));
+      d.appendChild(m);
+
+      if (p.needsEn){
+        var mEn = document.createElement("p");
+        mEn.className = "meta-en";
+        mEn.lang = "en";
+        mEn.textContent = "Prerequisites: " + p.needsEn;
+        d.appendChild(mEn);
+      }
+    }
+
+    host.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>
